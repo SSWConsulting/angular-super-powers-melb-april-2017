@@ -4,7 +4,7 @@ This code was written during a one day FireBootCamp course and is available to h
 
 It will not be updated or maintained.
 
-To attend Angular training check out FireBootCamp
+To attend Angular training check out FireBootCamp.com
 
 angular-super-powers-melbourne-april-2017
 
@@ -13,5 +13,3 @@ This is the code written at Angular Super Powers Brisbane. This repo contains fo
 How to run this code:
 
 Install the angular-cli on your machine. Go to cli.angular.io for instructions.
-Each folder is a angular cli project. To run one you need to cd into the folder and run npm i, to install its dependencies, for each project folder you want to run. For example cd firebootcamp-crm-demo then npm i
-To run a project cd into the project folder, for example cd firebootcamp-crm-demo, and run ng serve
