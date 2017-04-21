@@ -1,22 +1,9 @@
+<button class="btn btn-success float-right" routerLink="/company/edit/new" >Add</button>
+<div *ngIf="companies$ | async as companies2; else loading">
+ <fbc-company-table [companies]="companies2" ></fbc-company-table>
+ <fbc-company-table [companies]="companies2" ></fbc-company-table>
+</div>
+<ng-template #loading>
+  <p><ngb-progressbar type="danger" [value]="100" [striped]="true"></ngb-progressbar></p>
+</ng-template>
 
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody  >
-    <tr *ngFor="let company of companies" >
-      <td>{{company.name}}</td>
-      <td>{{company.email}}</td>
-      <td>{{company.phone}}</td>
-      <td>
-        <button class="btn btn-default">Edit</button>
-        <button class="btn btn-default">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>

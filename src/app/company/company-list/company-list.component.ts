@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { CompanyService } from '../company.service';
+import { Company } from '../company';
+import { Observable } from 'rxjs/Observable';
+import { Store } from "@ngrx/store";
+import { AppState } from '../../models/appState';
+import { LOAD_COMPANIES } from '../../reducers/company.reducer';
+
 
 @Component({
   selector: 'fbc-company-list',
   templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.scss']
+  styleUrls: ['./company-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyListComponent implements OnInit {
-  companies: { id: number; name: string; email: string; phone: number; }[];
+  companies$: Observable<Company[]>;
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>,
+    private companyService: CompanyService) {
+      this.companies$ = this.store.select(s => s.companies);
+     }
 
   ngOnInit() {
     this.getCompanies();
   }
 
   getCompanies() {
-    return this.companies = [
-      {id: -1, name: 'company 1', email: 'email1', phone: 123},
-      {id: -2, name: 'company 2', email: 'email2', phone: 123},
-    ];
+    // this.companies$ = this.companyService.getCompanies().delay(2000);
+    this.companyService.loadCompanies();
   }
 
 }
