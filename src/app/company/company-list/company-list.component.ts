@@ -27,7 +27,7 @@ export class CompanyListComponent implements OnInit {
   }
 
   getCompanies() {
-    this.store.dispatch({ type: LOAD_COMPANIES });
+    this.store.dispatch({type: LOAD_COMPANIES});
     // this.companies$ = this.companyService.getCompanies().delay(2000);
     // this.companyService.loadCompanies();
   }
