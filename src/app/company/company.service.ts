@@ -19,7 +19,7 @@ export class CompanyService {
     return this.http.get(`${environment.API_BASE}/company`)
       .map(response => response.json())
       .catch(this.errorHandler)
-      .subscribe(companies => this.store.dispatch({type: LOAD_COMPANIES, payload: companies}));
+    // .subscribe(companies => this.store.dispatch({type: LOAD_COMPANIES, payload: companies}));
   }
 
   getCompanies(): any {
@@ -33,6 +33,12 @@ export class CompanyService {
     const options = new RequestOptions({ headers: headers });
 
     return this.http.post(`${environment.API_BASE}/company`, JSON.stringify(company), options)
+      .map(response => response.json())
+      .catch(this.errorHandler);
+  }
+
+  deleteCompany(companyId: number) {
+    return this.http.delete(`${environment.API_BASE}/company/${companyId}`)
       .map(response => response.json())
       .catch(this.errorHandler);
   }

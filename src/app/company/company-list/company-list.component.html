@@ -1,9 +1,16 @@
-<button class="btn btn-success float-right" routerLink="/company/edit/new" >Add</button>
-<div *ngIf="companies$ | async as companies2; else loading">
- <fbc-company-table [companies]="companies2" ></fbc-company-table>
- <fbc-company-table [companies]="companies2" ></fbc-company-table>
+<button class="btn btn-success float-right" routerLink="/company/edit/new">Add</button>
+<div *ngIf="companies$ | async as companies; else loading">
+  <div class="row">
+    <div class="col-md-6">
+      <fbc-company-table [companies]="companies" (deleteCompany)="deleteCompany($event)"></fbc-company-table>
+    </div>
+    <div class="col-md-6">
+      <fbc-company-table [companies]="companies" (deleteCompany)="deleteCompany($event)"></fbc-company-table>
+    </div>
+  </div>
 </div>
 <ng-template #loading>
-  <p><ngb-progressbar type="danger" [value]="100" [striped]="true"></ngb-progressbar></p>
+  <p>
+    <ngb-progressbar type="danger" [value]="100" [striped]="true"></ngb-progressbar>
+  </p>
 </ng-template>
-

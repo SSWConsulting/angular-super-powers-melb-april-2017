@@ -14,7 +14,7 @@
         <td>{{company.phone}}</td>
         <td>
           <button class="btn btn-default">Edit</button>
-          <button class="btn btn-default">Delete</button>
+          <button class="btn btn-default" (click)="deleteCompany.emit(company.id)">Delete</button>
         </td>
       </tr>
     </tbody>

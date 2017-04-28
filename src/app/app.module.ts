@@ -13,6 +13,10 @@ import { CompanyTableComponent } from './company/company-table/company-table.com
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 import { StoreModule } from '@ngrx/store';
 import { companyReducer } from './reducers/company.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CompanyEffects } from './effects/company.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import { companyReducer } from './reducers/company.reducer';
     HttpModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    StoreModule.provideStore({companies: companyReducer})
+    StoreModule.provideStore({companies: companyReducer}),
+    EffectsModule.run(CompanyEffects),
+    StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [
     CompanyService

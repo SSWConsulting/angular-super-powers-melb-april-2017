@@ -2,9 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CompanyService } from '../company.service';
 import { Company } from '../company';
 import { Observable } from 'rxjs/Observable';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 import { AppState } from '../../models/appState';
-import { LOAD_COMPANIES } from '../../reducers/company.reducer';
+import { LOAD_COMPANIES, DELETE_COMPANY } from '../../reducers/company.reducer';
 
 
 @Component({
@@ -19,16 +19,21 @@ export class CompanyListComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private companyService: CompanyService) {
-      this.companies$ = this.store.select(s => s.companies);
-     }
+  }
 
   ngOnInit() {
+    this.companies$ = this.store.select(s => s.companies);
     this.getCompanies();
   }
 
   getCompanies() {
+    this.store.dispatch({ type: LOAD_COMPANIES });
     // this.companies$ = this.companyService.getCompanies().delay(2000);
-    this.companyService.loadCompanies();
+    // this.companyService.loadCompanies();
+  }
+
+  deleteCompany(companyId: number) {
+    this.store.dispatch({ type: DELETE_COMPANY, payload: companyId });
   }
 
 }
